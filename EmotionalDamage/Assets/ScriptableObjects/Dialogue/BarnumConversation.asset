@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 303a9b1c2b770bc41bdf73d39176cbca, type: 3}
+  m_Name: BarnumConversation
+  m_EditorClassIdentifier: 
+  speaker: {fileID: 11400000, guid: 282a1b5926196114db8a9a8f40617abe, type: 2}
+  inkJSON: {fileID: 4900000, guid: 05a96d4979405c8468b30a139482a629, type: 3}
