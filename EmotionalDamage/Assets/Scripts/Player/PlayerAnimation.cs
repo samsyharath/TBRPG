@@ -5,61 +5,43 @@ using UnityEngine.InputSystem;
 public class PlayerAnimation : MonoBehaviour
 {
     [Header("Dependencies")]
-    public Animator animator;
-    public SpriteRenderer spriteRenderer;
+    [SerializeField] private float _moveSpeed = 5f;
+    private Vector2 _movement;
 
-    // public void OnMovement(InputAction.CallbackContext value)
-    // {
-    //     float movementInput = value.ReadValue<Vector2>().magnitude;
+    private Rigidbody2D _rb;
 
-    //     if (movementInput > 0f)
-    //     {
-    //         animator.SetBool("IsRunning", true);
-    //     }
-    //     else 
-    //     {
-    //         animator.SetBool("IsRunning", false);
-    //     }
+    [SerializeField] private Animator _animator;
 
-    //     // animator.SetBool("IsRunning", movementInput != Vector2.zero);
-    // }
-    public void OnMovement2(InputAction.CallbackContext value)
+    private const string _horizontal = "Horizontal";
+    private const string _vertical = "Vertical";
+
+    private void Awake()
     {
-        Vector2 movementInput = value.ReadValue<Vector2>();
+        _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
 
-        if (movementInput.y > 0f) // Moving up
-        {
-            animator.SetBool("IsGoingUp", true);
-        }
+    }
+    private void Update()
+    {
+        _movement.Set(InputManager.Movement.x, InputManager.Movement.y);
 
-        else if (movementInput.y < 0f) // Moving down
+        _rb.velocity = _movement * _moveSpeed;
+
+        _animator.SetFloat(_horizontal, _movement.x);
+        _animator.SetFloat(_vertical, _movement.y);
+    }
+    public void OnMovement(InputAction.CallbackContext value)
+    {
+        float movementInput = value.ReadValue<Vector2>().magnitude;
+
+        if (movementInput > 0f)
         {
-            animator.SetBool("IsGoingDown", true);
+            _animator.SetBool("IsRunning", true);
         }
         else
         {
-            animator.SetBool("IsGoingDown", false);
-            animator.SetBool("IsGoingUp", false);
-        }
-        if (movementInput.x < 0f ) // Moving to the left
-        {
-            animator.SetBool("IsWalkingLeft", true);
-        }
-        else 
-        {
-            animator.SetBool("IsWalkingLeft", false);
-        }
-        
-        if (movementInput.x > 0f ) // Moving to the right
-        {
-            animator.SetBool("IsWalkingRight", true);
-        }
-        else 
-        {
-            animator.SetBool("IsWalkingRight", false);       
+            _animator.SetBool("IsRunning", false);
         }
 
-        
-    }
-    
+}
 }

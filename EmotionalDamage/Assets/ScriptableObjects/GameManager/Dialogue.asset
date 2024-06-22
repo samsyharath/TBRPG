@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08867d05997f4d246a3044753e4b31e8, type: 3}
-  m_Name: LoadLevelRequestGameEvent
+  m_Script: {fileID: 11500000, guid: 2c880220dd072a447b58192480576a68, type: 3}
+  m_Name: Dialogue
   m_EditorClassIdentifier: 
-  _debugValue:
-    scene: {fileID: 11400000, guid: ea8c92fc8e591c84e86515659e81419e, type: 2}
-    loadingScreen: 0
+  stateName: Dialogue

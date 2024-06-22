@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08867d05997f4d246a3044753e4b31e8, type: 3}
-  m_Name: LoadLevelRequestGameEvent
+  m_Script: {fileID: 11500000, guid: cbe4d59e612f226418a9f7ddf54c95bf, type: 3}
+  m_Name: InteractionToggledGameEvent
   m_EditorClassIdentifier: 
-  _debugValue:
-    scene: {fileID: 11400000, guid: ea8c92fc8e591c84e86515659e81419e, type: 2}
-    loadingScreen: 0
+  _debugValue: 0

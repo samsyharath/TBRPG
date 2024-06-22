@@ -884,6 +884,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 1925f7e92f0d341569b8c1f09bb067f3, type: 3}
     - target: {fileID: 3110621529334410609, guid: 18dc0162eb773b04b9367d6806333aa4, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: -908363107, guid: 1f9192e44f640b74d8d5762d6fdc45f2, type: 3}
+    - target: {fileID: 3110621529334410609, guid: 18dc0162eb773b04b9367d6806333aa4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}

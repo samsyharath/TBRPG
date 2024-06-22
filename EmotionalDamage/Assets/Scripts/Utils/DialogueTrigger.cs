@@ -29,14 +29,6 @@ public class DialogueTrigger : MonoBehaviour
         if (playerInRange)
         {
             visualCue.SetActive(true);
-            if(Keyboard.current.eKey.isPressed)
-            {
-                TriggerConversation();
-            }
-            else if(Keyboard.current.fKey.isPressed)
-            {
-                DialogueManager.GetInstance().ContinueStory();
-            }
         }
         else
         {
@@ -55,10 +47,9 @@ public class DialogueTrigger : MonoBehaviour
             if (collider.gameObject.tag == "Player")
             {playerInRange = false;}
         }
-
-     public void TriggerConversation()
-     {
-        DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-     }
-
+    public void BeginDialogue()
+    {
+        if (playerInRange)
+        {DialogueManager.GetInstance().EnterDialogueMode(inkJSON);}
+    }
 }

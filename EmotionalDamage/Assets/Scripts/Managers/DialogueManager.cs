@@ -15,6 +15,11 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Animator portraitAnimator;
     private Animator layoutAnimator;
 
+    [Header("Action events")]
+    public UnityEvent onConversationStarted;
+    public UnityEvent onConversationEnded;
+
+
    [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
@@ -46,7 +51,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
 
-        layoutAnimator = dialoguePanel.GetComponent<Animator>();
+        // layoutAnimator = dialoguePanel.GetComponent<Animator>();
 
                 //get all of the choices text
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -60,13 +65,24 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        
+        if (!dialogueIsPlaying)
+        {
+            return;
+        }
+
+        if (InputManager.GetInstance().GetSubmitPressed()) {
+        ContinueStory();
+    }
+
+
     }
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
+        if (onConversationStarted != null)
+            onConversationStarted.Invoke();
     
             //resets portrait, name, and layout to defaults
         // displayNameText.text = "???";
@@ -82,6 +98,10 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+    
+        if (onConversationEnded != null)
+            onConversationEnded.Invoke();
+    
         
     }
 
