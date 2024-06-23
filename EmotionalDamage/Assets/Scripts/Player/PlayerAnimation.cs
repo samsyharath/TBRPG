@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class PlayerAnimation : MonoBehaviour
 {
     [Header("Dependencies")]
-    [SerializeField] private float _moveSpeed = 5f;
     private Vector2 _movement;
 
     private Rigidbody2D _rb;
@@ -25,7 +24,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         _movement.Set(InputManager.Movement.x, InputManager.Movement.y);
 
-        _rb.velocity = _movement * _moveSpeed;
+        // _rb.velocity = _movement * _moveSpeed;
 
         _animator.SetFloat(_horizontal, _movement.x);
         _animator.SetFloat(_vertical, _movement.y);

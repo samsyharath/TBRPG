@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d927f2ba6ca5f45b26fe980452a574, type: 3}
   m_Name: ConversationRequestGameEvent
   m_EditorClassIdentifier: 
-  _debugValue: {fileID: 0}
+  _debugValue: {fileID: 11400000, guid: 71fe2439c1d83bb45904ea5767e9d415, type: 2}

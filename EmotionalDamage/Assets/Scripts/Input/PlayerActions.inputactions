@@ -95,7 +95,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
+                    "groups": "",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true

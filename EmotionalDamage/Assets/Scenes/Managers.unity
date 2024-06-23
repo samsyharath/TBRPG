@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 1298491510}
   - component: {fileID: 1298491509}
   - component: {fileID: 1298491513}
-  - component: {fileID: 1298491512}
+  - component: {fileID: 1298491515}
   - component: {fileID: 1298491511}
   - component: {fileID: 1298491514}
   m_Layer: 0
@@ -524,7 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effa3135cdf111c44b6f05bdd83e0673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showDebugFields: 0
+  _showDebugFields: 1
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _previouslyRegisteredEvent: {fileID: 0}
@@ -535,53 +535,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1298491509}
         m_TargetAssemblyTypeName: SceneLoaderManager, Assembly-CSharp
         m_MethodName: OnLoadMenuRequest
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1298491514}
-        m_TargetAssemblyTypeName: GameStateChanger, Assembly-CSharp
-        m_MethodName: SetGameState
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: cd628ca87ebba0b4892aceb491b602bb, type: 2}
-          m_ObjectArgumentAssemblyTypeName: GameStateSO, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _debugValue:
-    scene: {fileID: 0}
-    loadingScreen: 0
---- !u!114 &1298491512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1298491508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: effa3135cdf111c44b6f05bdd83e0673, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showDebugFields: 1
-  _enableGizmoDebugging: 1
-  _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 0}
-  _event: {fileID: 11400000, guid: e01b8f24f69fecf41a918b33aaba5841, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1298491509}
-        m_TargetAssemblyTypeName: SceneLoaderManager, Assembly-CSharp
-        m_MethodName: OnLoadLevelRequest
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -652,6 +605,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 11400000, guid: 470c27cd7a8742c4498bd51758e5f19b, type: 2}
+--- !u!114 &1298491515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298491508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: effa3135cdf111c44b6f05bdd83e0673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 1
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: e01b8f24f69fecf41a918b33aaba5841, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1298491509}
+        m_TargetAssemblyTypeName: SceneLoaderManager, Assembly-CSharp
+        m_MethodName: OnLoadLevelRequest
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1298491514}
+        m_TargetAssemblyTypeName: GameStateChanger, Assembly-CSharp
+        m_MethodName: SetGameState
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: cd628ca87ebba0b4892aceb491b602bb, type: 2}
+          m_ObjectArgumentAssemblyTypeName: GameStateSO, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _debugValue:
+    scene: {fileID: 0}
+    loadingScreen: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

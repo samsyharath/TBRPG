@@ -34,7 +34,10 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        Movement = _moveAction.ReadValue<Vector2>();
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {return;}
+        else
+        {Movement = _moveAction.ReadValue<Vector2>();}
     }
     public static InputManager GetInstance() 
     {
@@ -43,6 +46,7 @@ public class InputManager : MonoBehaviour
 
     public void MovePressed(InputAction.CallbackContext context)
     {
+        
         if (context.performed)
         {
             moveDirection = context.ReadValue<Vector2>();

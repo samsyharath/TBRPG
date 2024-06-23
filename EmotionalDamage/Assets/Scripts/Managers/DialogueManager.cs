@@ -13,7 +13,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI displayNameText;
     [SerializeField] private Animator portraitAnimator;
+    [SerializeField] private GameObject continueIcon;
+    [SerializeField] private float typingSpeed = 0.04f;
     private Animator layoutAnimator;
+    private Coroutine displayLineCoroutine;
 
     [Header("Action events")]
     public UnityEvent onConversationStarted;
@@ -31,6 +34,7 @@ public class DialogueManager : MonoBehaviour
 
     private Story currentStory;
     public bool dialogueIsPlaying {get; private set;}
+    private bool canContinueToNextLine = false;
 
     private void Awake()
     {
@@ -51,7 +55,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
 
-        // layoutAnimator = dialoguePanel.GetComponent<Animator>();
+        layoutAnimator = dialoguePanel.GetComponent<Animator>();
 
                 //get all of the choices text
         choicesText = new TextMeshProUGUI[choices.Length];
@@ -69,10 +73,13 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
-
-        if (InputManager.GetInstance().GetSubmitPressed()) {
+        
+        else if (canContinueToNextLine && 
+        currentStory.currentChoices.Count == 0 && 
+        InputManager.GetInstance().GetSubmitPressed())
+        {
         ContinueStory();
-    }
+        }
 
 
     }
@@ -86,8 +93,8 @@ public class DialogueManager : MonoBehaviour
     
             //resets portrait, name, and layout to defaults
         // displayNameText.text = "???";
-        // portraitAnimator.Play("default");
-        // layoutAnimator.Play("left");
+        // portraitAnimator.Play("Default");
+        // layoutAnimator.Play("Left");
 
         ContinueStory();
     }
@@ -109,9 +116,12 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue();
-            DisplayChoices();
-            // HandleTags(currentStory.currentTags);
+            if (displayLineCoroutine != null)
+            {
+                StopCoroutine(displayLineCoroutine);
+            }
+            displayLineCoroutine = StartCoroutine(DisplayLine(currentStory.Continue()));
+            HandleTags(currentStory.currentTags);
         }
         else
             {
@@ -119,6 +129,40 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
+    private IEnumerator DisplayLine(string line)
+    {
+        //empty dialogue text
+        dialogueText.text = "";
+        //Hide items while text is typing
+        continueIcon.SetActive(false);
+        HideChoices();
+
+        canContinueToNextLine = false;
+        foreach (char letter in line.ToCharArray())
+        {
+            //if the submit button is pressed, finish displaying like immediately
+            if (InputManager.GetInstance().GetSubmitPressed())
+            {
+                dialogueText.text = line;
+                break;
+            }
+            
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+        //actions for after entire line has finished
+        continueIcon.SetActive(true);
+        DisplayChoices();
+        canContinueToNextLine = true;
+    }
+
+    private void HideChoices()
+    {
+        foreach (GameObject choiceButton in choices)
+        {
+            choiceButton.SetActive(false);
+        }
+    }
         private void HandleTags(List<string> currentTags)
         {
         //loop through each tag and handle it accordingly
@@ -184,7 +228,11 @@ public class DialogueManager : MonoBehaviour
 
     public void MakeChoice(int choiceIndex)
     {
-        currentStory.ChooseChoiceIndex(choiceIndex);
+        if (canContinueToNextLine)
+        {currentStory.ChooseChoiceIndex(choiceIndex);
+        InputManager.GetInstance().RegisterSubmitPressed();
+        ContinueStory();
+        }
     }
 
     public void ConversationContinue()
